@@ -6,8 +6,8 @@ public class Class extends Structure {
     private ArrayList<Attribute> attributes;
     private ArrayList<Method> methods;
 
-    public Class(String name, String visibility, String type, ArrayList<Attribute> attributes, ArrayList<Method> methods) {
-        super(name, visibility, type);
+    public Class(String name, ArrayList<Attribute> attributes, ArrayList<Method> methods) {
+        super(name);
         this.attributes = attributes;
         this.methods = methods;
     }
@@ -26,5 +26,14 @@ public class Class extends Structure {
 
     public void setMethods(ArrayList<Method> methods) {
         this.methods = methods;
+    }
+
+    @Override
+    public String toString() {
+        return "Class{" +
+                "name=" + name +
+                ", attributes=" + attributes +
+                ", methods=" + methods + '\'' +
+                '}';
     }
 }

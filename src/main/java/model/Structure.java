@@ -1,15 +1,10 @@
 package model;
 
 public class Structure {
-    private String name;
-    private String visibility;
-    /*Type: String, int ...*/
-    private String type;
+    protected String name;
 
-    public Structure(String name, String visibility, String type) {
+    public Structure(String name) {
         this.name = name;
-        this.visibility = visibility;
-        this.type = type;
     }
 
     public String getName() {
@@ -20,19 +15,4 @@ public class Structure {
         this.name = name;
     }
 
-    public String getVisibility() {
-        return visibility;
-    }
-
-    public void setVisibility(String visibility) {
-        this.visibility = visibility;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 }
