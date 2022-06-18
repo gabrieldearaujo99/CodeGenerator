@@ -1,5 +1,9 @@
 package main;
 
+import model.Class;
+import model.Attribute;
+import model.Method;
+
 import org.json.*;
 
 import java.io.BufferedReader;
@@ -13,11 +17,10 @@ public class Main {
     public static void main(String[] args) {
         JSONObject jsonObject = readAndReturnJsonObject("in/JsonSimples.mdj");
         JSONArray jsonArrayClasses = getJsonArrayClasses(jsonObject);
-        ArrayList<String> arrayListClasses = getNameClasses(jsonArrayClasses);
+        ArrayList<Class> arrayListClasses = getClassInformation(jsonArrayClasses);
 
-        for (String arrayListClass : arrayListClasses)
-          System.out.println(arrayListClass);
-
+        for (Class arrayListClass : arrayListClasses)
+            System.out.println(arrayListClass);
     }
 
     static JSONObject readAndReturnJsonObject(String name) {
@@ -47,10 +50,15 @@ public class Main {
         return jsonArraylasses;
     }
 
-    static ArrayList<String> getNameClasses(JSONArray jsonArrayClasses) {
-        ArrayList<String> arrayListClasses = new ArrayList<>();
-        for(int i = 0; i < jsonArrayClasses.length(); ++i)
-            arrayListClasses.add(jsonArrayClasses.getJSONObject(i).getString("name"));
+    static ArrayList<Class> getClassInformation(JSONArray jsonArrayClasses) {
+        ArrayList<Class> arrayListClasses = new ArrayList<>();
+        String name;
+        ArrayList<Attribute> attributes = null;
+        ArrayList<Method> methods = null;
+        for(int i = 0; i < jsonArrayClasses.length(); ++i) {
+           name = jsonArrayClasses.getJSONObject(i).getString("name");
+           arrayListClasses.add(new Class(name, attributes, methods));
+        }
         return arrayListClasses;
     }
 }
