@@ -10,6 +10,15 @@ public class Attribute extends Structure {
         this.type = type;
     }
 
+    @Override
+    public String toString() {
+        return "Attribute{" +
+                "visibility='" + visibility + '\'' +
+                ", type='" + type + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
+
     public String getVisibility() {
         return visibility;
     }
