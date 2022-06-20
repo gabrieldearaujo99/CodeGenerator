@@ -1,9 +1,5 @@
 package main;
 
-import model.Class;
-import model.Attribute;
-import model.Method;
-
 import org.json.*;
 
 import java.io.BufferedReader;
@@ -13,14 +9,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import model.Class;
+import model.Attribute;
+import model.Method;
+
+
 public class Main {
     public static void main(String[] args) {
         JSONObject jsonObject = readAndReturnJsonObject("in/JsonSimples.mdj");
         JSONArray jsonArrayClasses = getJsonArrayClasses(jsonObject);
-        ArrayList<Class> arrayListClasses = getClassInformation(jsonArrayClasses);
+        ArrayList<Class> arrayListClasses = getInstanceClass(jsonArrayClasses);
 
-        for (Class arrayListClass : arrayListClasses)
+        for (Class arrayListClass : arrayListClasses) {
             System.out.println(arrayListClass);
+        }
+
     }
 
     static JSONObject readAndReturnJsonObject(String name) {
@@ -50,14 +53,30 @@ public class Main {
         return jsonArraylasses;
     }
 
-    static ArrayList<Class> getClassInformation(JSONArray jsonArrayClasses) {
+    static boolean hasKey(JSONArray jsonArrayClasses, int i, int j, String key){
+        return jsonArrayClasses.getJSONObject(i).getJSONArray("attributes").getJSONObject(j).has(key);
+    }
+    static ArrayList<Class> getInstanceClass(JSONArray jsonArrayClasses) {
         ArrayList<Class> arrayListClasses = new ArrayList<>();
         String name;
-        ArrayList<Attribute> attributes = null;
+        ArrayList<Attribute> arrayListAttributes = new ArrayList<>();
+        String nameAttribute, visibilityAttribute, typeAttribute;
         ArrayList<Method> methods = null;
         for(int i = 0; i < jsonArrayClasses.length(); ++i) {
            name = jsonArrayClasses.getJSONObject(i).getString("name");
-           arrayListClasses.add(new Class(name, attributes, methods));
+           if(jsonArrayClasses.getJSONObject(i).has("attributes")){
+               for(int j = 0; j < jsonArrayClasses.getJSONObject(i).getJSONArray("attributes").length(); ++j){
+                   nameAttribute = jsonArrayClasses.getJSONObject(i).getJSONArray("attributes").getJSONObject(j).getString("name");
+                   visibilityAttribute = hasKey(jsonArrayClasses, i, j, "visibility") ?
+                           jsonArrayClasses.getJSONObject(i).getJSONArray("attributes").getJSONObject(j).getString("visibility")
+                           : "";
+                   typeAttribute = hasKey(jsonArrayClasses, i, j, "type") ?
+                           jsonArrayClasses.getJSONObject(i).getJSONArray("attributes").getJSONObject(j).getString("type")
+                           : "";
+                   arrayListAttributes.add(new Attribute(nameAttribute, visibilityAttribute, typeAttribute));
+               }
+           }
+           arrayListClasses.add(new Class(name, arrayListAttributes, methods));
         }
         return arrayListClasses;
     }
