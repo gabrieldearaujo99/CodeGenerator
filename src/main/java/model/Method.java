@@ -10,6 +10,15 @@ public class Method extends Structure {
         this.stereotype = stereotype;
     }
 
+    @Override
+    public String toString() {
+        return "Method{" +
+                "visibility='" + visibility + '\'' +
+                ", stereotype='" + stereotype + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
+
     public String getVisibility() {
         return visibility;
     }
