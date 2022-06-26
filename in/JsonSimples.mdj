@@ -56,10 +56,10 @@
 											"_parent": {
 												"$ref": "AAAAAAGBbRfmGP4CLjU="
 											},
-											"font": "Arial;13;1",
+											"font": "Arial;13;3",
 											"left": 197,
 											"top": 119,
-											"width": 63.2353515625,
+											"width": 148.49072265625,
 											"height": 13,
 											"text": "Mamifero"
 										},
@@ -83,6 +83,9 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
+											"left": 197,
+											"top": 134,
+											"width": 148.49072265625,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
@@ -90,7 +93,7 @@
 									"font": "Arial;13;0",
 									"left": 192,
 									"top": 112,
-									"width": 73.2353515625,
+									"width": 158.49072265625,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGBbRfmGP4DU8A="
@@ -127,7 +130,7 @@
 											"font": "Arial;13;0",
 											"left": 197,
 											"top": 142,
-											"width": 63.2353515625,
+											"width": 148.49072265625,
 											"height": 13,
 											"text": "-nome",
 											"horizontalAlignment": 0
@@ -144,7 +147,7 @@
 											"font": "Arial;13;0",
 											"left": 197,
 											"top": 157,
-											"width": 63.2353515625,
+											"width": 148.49072265625,
 											"height": 13,
 											"text": "-idade",
 											"horizontalAlignment": 0
@@ -161,7 +164,7 @@
 											"font": "Arial;13;0",
 											"left": 197,
 											"top": 172,
-											"width": 63.2353515625,
+											"width": 148.49072265625,
 											"height": 13,
 											"text": "+dono",
 											"horizontalAlignment": 0
@@ -178,7 +181,7 @@
 											"font": "Arial;13;0",
 											"left": 197,
 											"top": 187,
-											"width": 63.2353515625,
+											"width": 148.49072265625,
 											"height": 13,
 											"text": "#especie",
 											"horizontalAlignment": 0
@@ -187,7 +190,7 @@
 									"font": "Arial;13;0",
 									"left": 192,
 									"top": 137,
-									"width": 73.2353515625,
+									"width": 158.49072265625,
 									"height": 68
 								},
 								{
@@ -202,7 +205,7 @@
 									"font": "Arial;13;0",
 									"left": 192,
 									"top": 205,
-									"width": 73.2353515625,
+									"width": 158.49072265625,
 									"height": 10
 								},
 								{
@@ -238,8 +241,8 @@
 							"containerChangeable": true,
 							"left": 192,
 							"top": 112,
-							"width": 73.2353515625,
-							"height": 103,
+							"width": 158.49072265625,
+							"height": 131,
 							"nameCompartment": {
 								"$ref": "AAAAAAGBbRfmGP4CLjU="
 							},
@@ -305,23 +308,8 @@
 							"visibility": "protected",
 							"type": ""
 						}
-					]
-				},
-				{
-					"_type": "UMLClass",
-					"_id": "AAAAAAGBbRgEQP4pOw8=",
-					"_parent": {
-						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
-					},
-					"name": "Gato"
-				},
-				{
-					"_type": "UMLClass",
-					"_id": "AAAAAAGBbRgXQf5T85A=",
-					"_parent": {
-						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
-					},
-					"name": "Cao"
+					],
+					"isAbstract": true
 				}
 			]
 		}
