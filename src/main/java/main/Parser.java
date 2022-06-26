@@ -101,7 +101,7 @@ public abstract class Parser {
     }
 
     public static void run(String PathAndName) {
-        JSONObject jsonObject = readAndReturnJsonObject("in/ArquivoTeste.mdj");
+        JSONObject jsonObject = readAndReturnJsonObject(PathAndName);
         JSONArray jsonArrayClasses = getJsonArrayClasses(jsonObject);
         arrayListClasses = getArrayListClasses(jsonArrayClasses);
     }
