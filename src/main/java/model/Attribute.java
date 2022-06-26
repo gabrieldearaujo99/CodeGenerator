@@ -1,37 +1,29 @@
 package model;
 
 public class Attribute extends Structure {
-    private String visibility;
-    private String type;
+    private final String visibility;
+    private final String type;
 
-    public Attribute(String name, String visibility, String type) {
-        super(name);
+    public Attribute(String id, String name, String visibility, String type) {
+        super(id, name);
         this.visibility = visibility;
         this.type = type;
-    }
-
-    @Override
-    public String toString() {
-        return "Attribute{" +
-                "visibility='" + visibility + '\'' +
-                ", type='" + type + '\'' +
-                ", name='" + name + '\'' +
-                '}';
     }
 
     public String getVisibility() {
         return visibility;
     }
 
-    public void setVisibility(String visibility) {
-        this.visibility = visibility;
-    }
-
     public String getType() {
         return type;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    @Override
+    public String toString() {
+        return "Attribute{" +
+                "name='" + name + '\'' +
+                ", visibility='" + visibility + '\'' +
+                ", type='" + type + '\'' +
+                '}';
     }
 }

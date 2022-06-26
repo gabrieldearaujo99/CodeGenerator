@@ -1,18 +1,19 @@
 package model;
 
 public class Structure {
-    protected String name;
+    protected final String id;
+    protected final String name;
 
-    public Structure(String name) {
+    public Structure(String id, String name) {
+        this.id = id;
         this.name = name;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getName() {
         return name;
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
 }

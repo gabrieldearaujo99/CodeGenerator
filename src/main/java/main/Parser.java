@@ -54,8 +54,9 @@ public abstract class Parser {
 
     private static ArrayList<Attribute> getArrayListAttributes(JSONArray jsonArrayClasses, int i) {
         ArrayList<Attribute> arrayListAttributes = new ArrayList<>();
-        String nameAttribute, visibilityAttribute, typeAttribute;
+        String id, nameAttribute, visibilityAttribute, typeAttribute;
         for(int j = 0; j < jsonArrayClasses.getJSONObject(i).getJSONArray("attributes").length(); ++j) {
+            id = jsonArrayClasses.getJSONObject(i).getJSONArray("attributes").getJSONObject(j).getString("_id");
             nameAttribute = jsonArrayClasses.getJSONObject(i).getJSONArray("attributes").getJSONObject(j).getString("name");
             visibilityAttribute = hasKey(jsonArrayClasses, i, j, "attributes", "visibility") ?
                     jsonArrayClasses.getJSONObject(i).getJSONArray("attributes").getJSONObject(j).getString("visibility")
@@ -63,15 +64,16 @@ public abstract class Parser {
             typeAttribute = hasKey(jsonArrayClasses, i, j, "attributes", "type") ?
                     jsonArrayClasses.getJSONObject(i).getJSONArray("attributes").getJSONObject(j).getString("type")
                     : "";
-            arrayListAttributes.add(new Attribute(nameAttribute, visibilityAttribute, typeAttribute));
+            arrayListAttributes.add(new Attribute(id, nameAttribute, visibilityAttribute, typeAttribute));
         }
         return arrayListAttributes;
     }
 
     private static ArrayList<Method> getArrayListMethods(JSONArray jsonArrayClasses, int i) {
         ArrayList<Method> arrayListMethods = new ArrayList<>();
-        String nameMethod, visibilityMethod, stereotypeMethod;
+        String id, nameMethod, visibilityMethod, stereotypeMethod;
         for(int j = 0; j < jsonArrayClasses.getJSONObject(i).getJSONArray("operations").length(); ++j) {
+            id = jsonArrayClasses.getJSONObject(i).getJSONArray("operations").getJSONObject(j).getString("_id");
             nameMethod = jsonArrayClasses.getJSONObject(i).getJSONArray("operations").getJSONObject(j).getString("name");
             visibilityMethod = hasKey(jsonArrayClasses, i, j, "operations", "visibility") ?
                     jsonArrayClasses.getJSONObject(i).getJSONArray("operations").getJSONObject(j).getString("visibility")
@@ -79,7 +81,7 @@ public abstract class Parser {
             stereotypeMethod = hasKey(jsonArrayClasses, i, j,"operations", "stereotype") ?
                     jsonArrayClasses.getJSONObject(i).getJSONArray("operations").getJSONObject(j).getString("stereotype")
                     : "";
-            arrayListMethods.add(new Method(nameMethod, visibilityMethod, stereotypeMethod));
+            arrayListMethods.add(new Method(id, nameMethod, visibilityMethod, stereotypeMethod));
         }
         return arrayListMethods;
     }
@@ -88,9 +90,10 @@ public abstract class Parser {
         ArrayList<Class> arrayListClasses = new ArrayList<>();
         ArrayList<Attribute> arrayListAttributes = null;
         ArrayList<Method> arrayListMethods = null;
-        String name;
+        String id, name;
         boolean isAbstract = false;
         for(int i = 0; i < jsonArrayClasses.length(); ++i) {
+            id = jsonArrayClasses.getJSONObject(i).getString("_id");
             name = jsonArrayClasses.getJSONObject(i).getString("name");
             if(jsonArrayClasses.getJSONObject(i).has("isAbstract"))
                 isAbstract = jsonArrayClasses.getJSONObject(i).getBoolean("isAbstract");
@@ -98,7 +101,7 @@ public abstract class Parser {
                 arrayListAttributes = getArrayListAttributes(jsonArrayClasses, i);
             if(jsonArrayClasses.getJSONObject(i).has("operations"))
                 arrayListMethods = getArrayListMethods(jsonArrayClasses, i);
-            arrayListClasses.add(new Class(name, arrayListAttributes, arrayListMethods, isAbstract));
+            arrayListClasses.add(new Class(id, name, arrayListAttributes, arrayListMethods, isAbstract));
         }
         return arrayListClasses;
     }

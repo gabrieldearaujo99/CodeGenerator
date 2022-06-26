@@ -1,37 +1,29 @@
 package model;
 
 public class Method extends Structure {
-    private String visibility;
-    private String stereotype;
+    private final String visibility;
+    private final String stereotype;
 
-    public Method(String name, String visibility, String stereotype) {
-        super(name);
+    public Method(String id, String name, String visibility, String stereotype) {
+        super(id, name);
         this.visibility = visibility;
         this.stereotype = stereotype;
-    }
-
-    @Override
-    public String toString() {
-        return "Method{" +
-                "visibility='" + visibility + '\'' +
-                ", stereotype='" + stereotype + '\'' +
-                ", name='" + name + '\'' +
-                '}';
     }
 
     public String getVisibility() {
         return visibility;
     }
 
-    public void setVisibility(String visibility) {
-        this.visibility = visibility;
-    }
-
     public String getStereotype() {
         return stereotype;
     }
 
-    public void setStereotype(String stereotype) {
-        this.stereotype = stereotype;
+    @Override
+    public String toString() {
+        return "Method{" +
+                "name='" + name + '\'' +
+                ", visibility='" + visibility + '\'' +
+                ", stereotype='" + stereotype + '\'' +
+                '}';
     }
 }
