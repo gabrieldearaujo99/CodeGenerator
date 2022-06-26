@@ -89,13 +89,16 @@ public abstract class Parser {
         ArrayList<Attribute> arrayListAttributes = null;
         ArrayList<Method> arrayListMethods = null;
         String name;
+        boolean isAbstract = false;
         for(int i = 0; i < jsonArrayClasses.length(); ++i) {
             name = jsonArrayClasses.getJSONObject(i).getString("name");
+            if(jsonArrayClasses.getJSONObject(i).has("isAbstract"))
+                isAbstract = jsonArrayClasses.getJSONObject(i).getBoolean("isAbstract");
             if(jsonArrayClasses.getJSONObject(i).has("attributes"))
                 arrayListAttributes = getArrayListAttributes(jsonArrayClasses, i);
             if(jsonArrayClasses.getJSONObject(i).has("operations"))
                 arrayListMethods = getArrayListMethods(jsonArrayClasses, i);
-            arrayListClasses.add(new Class(name, arrayListAttributes, arrayListMethods));
+            arrayListClasses.add(new Class(name, arrayListAttributes, arrayListMethods, isAbstract));
         }
         return arrayListClasses;
     }
